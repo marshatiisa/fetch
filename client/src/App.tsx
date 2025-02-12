@@ -8,15 +8,6 @@ function App() {
   const [email, setEmail] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
 
-  // const handleLogin = async() => {
-  //   console.log(name, email);
-  //   const response = await fetch(`${baseUrl}/auth/login`, {
-  //     method: 'POST',
-  //     body: JSON.stringify({ name, email }),
-  //   });
-  //   console.log(response);
-  // }
-
   async function handleLogin() {
     console.log(name, email);
     try {
@@ -32,20 +23,18 @@ function App() {
       if (!response.ok) {
         const errorData = await response.json();  
         console.error("Login failed:", response.status, errorData);
-        throw new Error(`Login failed with status ${response.status}: ${JSON.stringify(errorData)}`); // More informative error
+        throw new Error(`Login failed with status ${response.status}: ${JSON.stringify(errorData)}`);
       }
       const allCookies = document.cookie;
       console.log("All cookies (document.cookie):", allCookies);
-      // Successful login.  The browser will automatically handle the HttpOnly cookie.
-      // We don't need to access it directly here.
       console.log("Login successful!  Cookie set by server.");
       console.log(response);
       setLoggedIn(true);
-      return response; // return full response
+      return response; 
   
     } catch (error) {
       console.error("Error during login:", error);
-      throw error; // Re-throw the error so the caller can handle it (e.g., display an error message to the user)
+      throw error; 
     }
   }
 
