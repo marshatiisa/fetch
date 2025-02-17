@@ -10,6 +10,14 @@ interface SearchResults {
   prev?: string;
 }
 
+interface Dog {
+  id: string;
+  name: string;
+  breed: string;
+  age: number;
+  zip_code: string;
+}
+
 function App() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -70,7 +78,7 @@ function App() {
     if (ageMin) queryParams.append('ageMin', ageMin.toString());
     if (ageMax) queryParams.append('ageMax', ageMax.toString());
     if (size) queryParams.append('size', size.toString());
-    if (from) queryParams.append('from', from);
+    if (from) queryParams.append('from', from)
     if (sort) queryParams.append('sort', sort);
 
     const url = `${baseUrl}/dogs/search?${queryParams.toString()}`;
